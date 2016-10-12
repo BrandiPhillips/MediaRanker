@@ -1,2 +1,35 @@
-<h1>AllMedia#index</h1>
-<p>Find me in app/views/all_media/index.html.erb</p>
+
+
+
+
+<h1>Top Movies</h1>
+<article>
+  <% @movies.each do |m| %>
+    <p>
+      <%= link_to m.title %> <%= " #{m.ranked}" %>
+    </p>
+  <% end %>
+  <%= link_to "View More Movies", movies_path %>
+</article>
+
+
+<h1>Top Books</h1>
+<article>
+<% @books.each do |b| %>
+  <p>
+    <%= link_to b.title %> <%= " #{b.ranked}" %>
+  </p>
+<% end %>
+<%= link_to "View More Books", books_path %>
+</article>
+
+
+<h1>Top Albums</h1>
+<article>
+  <% @albums.each do |a| %>
+  <p>
+    <%= link_to a.title %> <%= " #{a.ranked}" %>
+  </p>
+  <% end %>
+  <%= link_to "View More Albums", albums_path %>
+</article>
