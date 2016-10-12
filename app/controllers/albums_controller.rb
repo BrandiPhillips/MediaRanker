@@ -14,7 +14,7 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @current = Album.update(title: params[:album][:title], author: params[:album][:author], description: params[:album][:description])
+    @current = Album.update(title: params[:album][:title], author: params[:album][:author], description: params[:album][:description], ranked: 0)
   end
 
   def edit
@@ -23,8 +23,18 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    @current= Album.update(title: params[:album][:title], author: params[:album][:author], description: params[:album][:description])
+    @current = Album.find(params[:id].to_i)
+      @current.update(title: params[:album][:title], author: params[:album][:author], description: params[:album][:description], ranked: 0)
+      redirect_to album_path(@current.id)
   end
+
+
+    def upvote
+      @current = Album.find(params[:id].to_i)
+      @current.increment! :ranked
+      redirect_to album_path(@current.id)
+    end
+
 
   def destroy
     @current = Album.find(params[:id].to_i).destroy

@@ -24,7 +24,15 @@ class BooksController < ApplicationController
   end
 
   def update
-    @current = Book.update(title: params[:book][:title], author: params[:book][:author], description: params[:book][:description])
+    @current = Book.find(params[:id].to_i)
+    @current.update(title: params[:book][:title], author: params[:book][:author], description: params[:book][:description])
+    redirect_to book_path(@current.id)
+  end
+
+  def upvote
+    @current = Book.find(params[:id].to_i)
+    @current.increment! :ranked
+    redirect_to book_path(@current.id)
   end
 
   def destroy

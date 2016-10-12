@@ -6,7 +6,7 @@
 <article>
   <% @movies.each do |m| %>
     <p>
-      <%= link_to m.title %> <%= " #{m.ranked}" %>
+      <%= link_to m.title, movie_path(m.id) %> <%= " #{m.ranked}" %>
     </p>
   <% end %>
   <%= link_to "View More Movies", movies_path %>
@@ -17,7 +17,7 @@
 <article>
 <% @books.each do |b| %>
   <p>
-    <%= link_to b.title %> <%= " #{b.ranked}" %>
+    <%= link_to b.title, book_path(b.id) %> <%= " #{b.ranked}" %>
   </p>
 <% end %>
 <%= link_to "View More Books", books_path %>
@@ -28,7 +28,7 @@
 <article>
   <% @albums.each do |a| %>
   <p>
-    <%= link_to a.title %> <%= " #{a.ranked}" %>
+    <%= link_to a.title, album_path(a.id) %> <%= " #{a.ranked}" %>
   </p>
   <% end %>
   <%= link_to "View More Albums", albums_path %>
