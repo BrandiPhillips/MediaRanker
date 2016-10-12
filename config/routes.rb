@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  root to: 'all_media#index'
+
+  resources :all_media, only: [:index]
+  resources :movies
+  resources :books
+  resources :albums
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
