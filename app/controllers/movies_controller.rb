@@ -2,13 +2,17 @@ class MoviesController < ApplicationController
 
   def index
     @type = "Movie"
-    @type_path = "movie_path(item.id)"
-    @add_path = "new_movie_path"
+    @type_path = "/movies/"
+    @add_path = new_movie_path
     @current = Movie.all
   end
 
   def show
+    @view_all_type = movie_path
+    @type = "Movies"
+    @edit_path = edit_movie_path
     @current = Movie.find(params[:id].to_i)
+    @author = "Directed by: "
   end
 
   def new
@@ -17,7 +21,12 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @current = Movie.create(title: params[:movie][:title], author: params[:movie][:author], description: params[:movie][:description], ranked: 0)
+    @current = Movie.create
+    @current.title = params[:movie][:title]
+    @current.author = params[:movie][:author]
+    @current.description = params[:movie][:description]
+    @current.ranked = 0
+    redirect_to movie_path(@current.id)
   end
 
   def edit
@@ -30,6 +39,7 @@ class MoviesController < ApplicationController
       @current.title = params[:movie][:title]
       @current.author = params[:movie][:author]
       @current.description = params[:movie][:description]
+      @current.save
       redirect_to movie_path(@current.id)
   end
 

@@ -8,7 +8,11 @@ class AlbumsController < ApplicationController
   end
 
   def show
+    @view_all_type = album_path
+    @type = "Albums"
+    @edit_path = edit_album_path
     @current = Album.find(params[:id].to_i)
+    @author = "Recorded by: "
   end
 
   def new
@@ -17,8 +21,12 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @current = Album.create(title: params[:album][:title], author: params[:album][:author], description: params[:album][:description], ranked: 0)
-    redirect_to album_path(@current.id)
+    @current = Album.create
+    @current.title = params[:movie][:title]
+    @current.author = params[:movie][:author]
+    @current.description = params[:movie][:description]
+    @current.ranked = 0
+    redirect_to movie_path(@current.id)
   end
 
   def edit
@@ -28,8 +36,12 @@ class AlbumsController < ApplicationController
 
   def update
     @current = Album.find(params[:id].to_i)
-      @current.update(title: params[:album][:title], author: params[:album][:author], description: params[:album][:description], ranked: 0)
-      redirect_to album_path(@current.id)
+    @current = Album.find(params[:id].to_i)
+    @current.title = params[:album][:title]
+    @current.author = params[:album][:author]
+    @current.description = params[:album][:description]
+    @current.save
+    redirect_to movie_path(@current.id)
   end
 
 
@@ -42,5 +54,6 @@ class AlbumsController < ApplicationController
 
   def destroy
     @current = Album.find(params[:id].to_i).destroy
+    redirect_to albums_path
   end
 end

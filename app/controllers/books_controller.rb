@@ -3,13 +3,17 @@ class BooksController < ApplicationController
 
   def index
     @type = "Books"
-    @type_path = "book_path(item.id)"
-    @add_path = "new_Book_path"
+    @type_path = "/books/"
+    @add_path = new_book_path
     @current = Book.all
   end
 
   def show
+    @view_all_type = book_path
+    @type = "Books"
+    @edit_path = edit_book_path
     @current = Book.find(params[:id].to_i)
+    @author = "Written by: "
   end
 
   def new
@@ -18,7 +22,12 @@ class BooksController < ApplicationController
   end
 
   def create
-    @current = Book.create(title: params[:book][:title], author: params[:book][:author], description: params[:book][:description])
+    @current = Book.create
+    @current.title = params[:movie][:title]
+    @current.author = params[:movie][:author]
+    @current.description = params[:movie][:description]
+    @current.ranked = 0
+    redirect_to movie_path(@current.id)
   end
 
   def edit
@@ -28,8 +37,11 @@ class BooksController < ApplicationController
 
   def update
     @current = Book.find(params[:id].to_i)
-    @current.update(title: params[:book][:title], author: params[:book][:author], description: params[:book][:description])
-    redirect_to book_path(@current.id)
+    @current.title = params[:book][:title]
+    @current.author = params[:book][:author]
+    @current.description = params[:book][:description]
+    @current.save
+    redirect_to movie_path(@current.id)
   end
 
   def upvote
