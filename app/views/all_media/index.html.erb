@@ -1,0 +1,35 @@
+
+<%= render "shared/header" %>
+
+
+<h1>Top Movies</h1>
+<article>
+  <% @movies.each do |m| %>
+    <p>
+      <%= link_to m.title, movie_path(m.id) %> <%= " #{m.ranked}" %>
+    </p>
+  <% end %>
+  <%= link_to "View More Movies", movies_path %>
+</article>
+
+
+<h1>Top Books</h1>
+<article>
+<% @books.each do |b| %>
+  <p>
+    <%= link_to b.title, book_path(b.id) %> <%= " #{b.ranked}" %>
+  </p>
+<% end %>
+<%= link_to "View More Books", books_path %>
+</article>
+
+
+<h1>Top Albums</h1>
+<article>
+  <% @albums.each do |a| %>
+  <p>
+    <%= link_to a.title, album_path(a.id) %> <%= " #{a.ranked}" %>
+  </p>
+  <% end %>
+  <%= link_to "View More Albums", albums_path %>
+</article>

@@ -1,0 +1,17 @@
+<%= render "shared/header" %>
+
+<h1><%= "#{@current.title}" %> <small> <%= "#{@author} #{@current.author}" %> </small> </h1>
+<h3><%= "#{@current.ranked}" %></h3>
+<p>
+  <%= "#{@current.description}" %>
+</p>
+
+<%= button_to "Upvote", {action: "upvote", id: @current.id}, {:method => :patch} %>
+
+<%= button_to "Edit #{@current.title}", {action: "edit", id: @current.id}, {:method => :get} %>
+
+<%= button_to "Delete", {action: "destroy", id: @current.id}, method: :delete, data: {confirm: "Are you sure you want to delete this #{@type}?"} %>
+
+<%= button_to "view all #{@type}", @view_all_type %>
+
+<%= button_to "View All Media", all_media_path %>

@@ -1,0 +1,2 @@
+module AllMediaHelper
+end
