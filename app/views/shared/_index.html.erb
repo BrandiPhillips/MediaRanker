@@ -1,0 +1,12 @@
+
+
+
+
+  <% @current.each do |item| %>
+    <p>
+      <%= " #{item.ranked}" %> <%= link_to item.title, @type_path + item.id.to_s %> <%= button_to "Upvote", {action: "upvote", id: item.id}, {:method => :patch} %>
+    </p>
+  <% end %>
+
+  <%= link_to "View All Media", all_media_path %>
+  <%= link_to "Add #{@type}", @add_path %>

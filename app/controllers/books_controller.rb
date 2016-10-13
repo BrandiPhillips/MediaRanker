@@ -2,7 +2,10 @@ class BooksController < ApplicationController
 
 
   def index
-    @books = Book.all
+    @type = "Books"
+    @type_path = "book_path(item.id)"
+    @add_path = "new_Book_path"
+    @current = Book.all
   end
 
   def show

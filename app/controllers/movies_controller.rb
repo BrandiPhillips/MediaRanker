@@ -1,7 +1,10 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies = Movie.all
+    @type = "Movie"
+    @type_path = "movie_path(item.id)"
+    @add_path = "new_movie_path"
+    @current = Movie.all
   end
 
   def show

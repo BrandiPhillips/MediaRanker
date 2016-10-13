@@ -1,7 +1,10 @@
 class AlbumsController < ApplicationController
 
   def index
-    @albums = Album.all
+    @type = "Album"
+    @type_path = "/albums/"
+    @add_path = new_album_path
+    @current = Album.all
   end
 
   def show
@@ -14,7 +17,8 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @current = Album.update(title: params[:album][:title], author: params[:album][:author], description: params[:album][:description], ranked: 0)
+    @current = Album.create(title: params[:album][:title], author: params[:album][:author], description: params[:album][:description], ranked: 0)
+    redirect_to album_path(@current.id)
   end
 
   def edit
